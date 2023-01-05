@@ -1,0 +1,233 @@
+:root {
+    --wrapperSize: 1000px;
+  }
+  body {
+    display: flex;
+    inset: 0;
+    position: absolute;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(247, 247, 247);
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    line-height: 1.3;
+    font-size: 16px;
+    color: #333;
+    overflow-x: hidden;
+  }
+  .grid-item {
+    position: relative;
+    top: unset;
+    z-index: unset;
+    width: calc(var(--wrapperSize) / 4 - 20px - 48px);
+    height: calc(var(--wrapperSize) / 4 - 20px - 48px);
+    margin: 10px;
+    padding: 24px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px rgb(230, 230, 230),
+      rgba(149, 157, 165, 0.15) 0px 3px 6px 0px;
+    float: left;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+    transition: all 300ms linear 0s;
+  }
+  .grid-item .content {
+    position: absolute;
+    width: calc(100% - 48px);
+    height: calc(100% - 48px);
+    overflow: auto;
+    top: 0;
+    left: 0;
+    padding: 24px;
+    z-index: -1;
+  }
+  #wrapper {
+    max-width: calc(var(--wrapperSize) / 2);
+  }
+  .double-width {
+    width: calc(var(--wrapperSize) / 2 - 20px - 48px);
+  }
+  .half-height {
+    height: calc(var(--wrapperSize) / 8 - 20px - 48px);
+  }
+  .stickyItem {
+    position: sticky;
+    top: 0;
+    z-index: 999999;
+  }
+  .icon-corner {
+    position: fixed;
+    display: flex;
+    right: 0;
+    bottom: 0;
+    padding: 16px;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 200ms linear 0s;
+  }
+  .action-icon {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    padding: 4px;
+    border-radius: 8px;
+    background-color: white;
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+  .action-icon:hover {
+    background-color: #eee;
+  }
+  .action-icon[tooltip]::after {
+    display: block;
+    content: attr(tooltip);
+    background: #000000;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+    color: #ffffff;
+    font-size: 13px;
+    position: absolute;
+    padding: 6px 8px;
+    white-space: nowrap;
+    top: 110%;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 100ms linear 0ms;
+  }
+  .action-icon[tooltip]:hover::after {
+    opacity: 1;
+    transition: opacity 200ms linear 500ms;
+  }
+  .icon-corner .action-icon[tooltip]::after {
+    right: 0;
+    left: unset;
+    bottom: 110%;
+    top: unset;
+  }
+  .close-x[tooltip]::after {
+    left: unset;
+    right: 0;
+  }
+  .arrow-h {
+    background-image: url(https://adir-sl.github.io/grid/images/arrow-h.svg);
+  }
+  .arrow-v {
+    background-image: url(https://adir-sl.github.io/grid/images/arrow-v.svg);
+  }
+  .close-x {
+    background-image: url(https://adir-sl.github.io/grid/images/close.svg);
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    opacity: 0;
+    transition: opacity 200ms linear 0s;
+  }
+  .stickyItem .pin {
+    background-image: url(https://adir-sl.github.io/grid/images/pinned.svg);
+  }
+  .stickyItem .pin::after {
+    content: "Unpin item";
+  }
+  .pin {
+    background-image: url(https://adir-sl.github.io/grid/images/pin.svg);
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    opacity: 0;
+    transition: opacity 200ms linear 0s;
+  }
+  .color-picker {
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    overflow: visible;
+  }
+  .color-picker:focus {
+    outline: none;
+  }
+  .color-picker[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  .color-picker[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .grid-item:hover .icon-corner,
+  .grid-item:hover .close-x,
+  .grid-item:hover .pin {
+    opacity: 1;
+  }
+  .grid-item:focus-within .icon-corner,
+  .grid-item:focus-within .close-x,
+  .grid-item:focus-within .pin {
+    opacity: 1;
+  }
+  h1,
+  h2,
+  h3 {
+    pointer-events: none;
+    font-weight: 600;
+    margin: 0;
+  }
+  h1 {
+    font-size: 7em;
+    line-height: 1.6em;
+  }
+  h2 {
+    font-size: 4em;
+  }
+  h3 {
+    font-size: 2em;
+  }
+  
+  .button-alert {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    padding: 12px 24px;
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    animation: alertPop 5000ms ease-out forwards;
+  }
+  .button-alert::before {
+    content: "";
+    padding: 8px 12px;
+    margin-right: 12px;
+    background-image: url(https://adir-sl.github.io/grid/images/undo.svg);
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: center;
+    border-radius: 8px;
+  }
+  .button-alert:hover {
+    background-color: #555555;
+  }
+  @keyframes alertPop {
+    0% {
+      bottom: 0;
+      opacity: 0;
+    }
+    5% {
+      bottom: 40px;
+      opacity: 1;
+    }
+    50% {
+      bottom: 40px;
+      opacity: 1;
+    }
+    100% {
+      bottom: 0;
+      opacity: 0;
+    }
+  }
